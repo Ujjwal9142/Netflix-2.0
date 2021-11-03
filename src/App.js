@@ -8,15 +8,16 @@ import { useDispatch } from "react-redux";
 import { login, logout, selectUser } from "./features/userSlice";
 import { useSelector } from "react-redux";
 import ProfileScreen from "./screens/ProfileScreen";
+import { onAuthStateChanged } from "@firebase/auth";
 
 function App() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const unsubsribe = auth.onAuthStateChanged((userAuth) => {
+    const unsub = onAuthStateChanged(auth, (userAuth) => {
       if (userAuth) {
-        // Logged In
+        // Logged in User
         dispatch(
           login({
             uid: userAuth.uid,
@@ -24,13 +25,14 @@ function App() {
           })
         );
       } else {
-        // Logged Out
+        // Logged out User
         dispatch(logout());
       }
     });
 
-    return unsubsribe;
+    return unsub;
   }, [dispatch]);
+
   return (
     <div className="app">
       <Router>

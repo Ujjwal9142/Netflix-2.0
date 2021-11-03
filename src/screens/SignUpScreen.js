@@ -1,3 +1,4 @@
+import { createUserWithEmailAndPassword } from "@firebase/auth";
 import React, { useRef } from "react";
 import { auth } from "../firebase";
 import "./SignInScreen.css";
@@ -8,16 +9,16 @@ const SignUpScreen = ({ setIsSignUp }) => {
 
   const register = (e) => {
     e.preventDefault();
-    auth
-      .createUserWithEmailAndPassword(
-        emailRef.current.value,
-        passwordRef.current.value
-      )
+    createUserWithEmailAndPassword(
+      auth,
+      emailRef.current.value,
+      passwordRef.current.value
+    )
       .then((authUser) => {
-        console.log(authUser);
+        console.log("User is signed up");
       })
-      .catch((error) => {
-        alert(error.message);
+      .catch((err) => {
+        alert(err.message);
       });
   };
 

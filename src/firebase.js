@@ -1,13 +1,14 @@
-import firebase from "firebase";
-import "firebase/firestore";
+import { initializeApp } from "firebase/app";
+import firebase from "firebase/app";
+import { getFirestore } from "@firebase/firestore";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
   // YOUR FIREBASE CONFIG
 };
 
-const firebaseApp = firebase.initializeApp(firebaseConfig);
-const db = firebaseApp.firestore();
-const auth = firebase.auth();
+const firebaseApp = initializeApp(firebaseConfig);
+const db = getFirestore(firebaseApp);
+const auth = getAuth(firebaseApp);
 
-export { auth };
-export default db;
+export { db, auth };

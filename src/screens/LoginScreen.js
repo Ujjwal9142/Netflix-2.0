@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./LoginScreen.css";
 import SignInScreen from "./SignInScreen";
+import Netflix from "../assets/netflix.png";
 
 const LoginScreen = () => {
   const [signIn, setSignIn] = useState(false);
@@ -9,11 +10,7 @@ const LoginScreen = () => {
   return (
     <div className="loginScreen">
       <div className="loginScreen__background">
-        <img
-          className="loginScreen__logo"
-          src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c529.png"
-          alt="Netflix"
-        />
+        <img className="loginScreen__logo" src={Netflix} alt="Netflix" />
         <button className="loginScreen__button" onClick={() => setSignIn(true)}>
           Sign In
         </button>
